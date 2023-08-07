@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class StudentServiceImpl implements StudentService {
 
@@ -27,18 +30,24 @@ public class StudentServiceImpl implements StudentService {
                 .courseEntity(course)
                 .build();
 
-
-
         studentEntity = studentRepository.save(studentEntity);
-        return convertEntityToDto(studentEntity);
+        return convertEntityToDto(studentEntity, null);
 
     }
 
+    @Override
+    public StudentDto getStudent(Long id) {
+        StudentEntity found = studentRepository.findByid(id);
+        CourseEntity coursefound = found.getCourseEntity();
+        return convertEntityToDto(found, coursefound);
+    }
 
-    private StudentDto convertEntityToDto(StudentEntity entity) {
+
+    private StudentDto convertEntityToDto(StudentEntity entity, CourseEntity courseEntity) {
         return StudentDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())
+                .course(courseEntity)
                 .build();
     }
 }

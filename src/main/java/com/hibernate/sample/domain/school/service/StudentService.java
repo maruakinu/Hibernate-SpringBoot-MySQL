@@ -6,4 +6,6 @@ public interface StudentService {
 
     StudentDto createStudent(final StudentDto student);
 
+    StudentDto getStudent(final Long id);
+
 }

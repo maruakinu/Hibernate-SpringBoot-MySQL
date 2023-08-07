@@ -17,9 +17,8 @@ public class StudentEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(
-            orphanRemoval = true,
-            cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id", referencedColumnName = "id")
     private CourseEntity courseEntity;
 
     @Builder

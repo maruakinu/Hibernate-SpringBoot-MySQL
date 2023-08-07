@@ -4,10 +4,7 @@ import com.hibernate.sample.domain.school.dto.StudentDto;
 import com.hibernate.sample.domain.school.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -18,8 +15,13 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping("/post")
-    public StudentDto.SingleStudent<StudentDto> createArticle(@RequestBody StudentDto.SingleStudent<StudentDto> article) {
+    public StudentDto.SingleStudent<StudentDto> createStudent(@RequestBody StudentDto.SingleStudent<StudentDto> article) {
         return new StudentDto.SingleStudent<>(studentService.createStudent(article.getStudent()));
+    }
+
+    @GetMapping("/{id}")
+    public StudentDto.SingleStudent<StudentDto> getStudent(@PathVariable Long id) {
+        return new StudentDto.SingleStudent<>(studentService.getStudent(id));
     }
 
 }
