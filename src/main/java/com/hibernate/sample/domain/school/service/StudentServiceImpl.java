@@ -38,12 +38,13 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDto getStudent(Long id) {
         StudentEntity found = studentRepository.findByid(id);
-        String courseFound = found.getCourseEntity().getName();
+        CourseEntity courseFound = found.getCourseEntity();
+//        String courseFound = found.getCourseEntity().getName();
         return convertEntityToDto(found, courseFound);
     }
 
 
-    private StudentDto convertEntityToDto(StudentEntity entity, String courseEntity) {
+    private StudentDto convertEntityToDto(StudentEntity entity, CourseEntity courseEntity) {
         return StudentDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())

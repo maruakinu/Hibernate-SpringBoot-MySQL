@@ -17,7 +17,7 @@ public class StudentDto {
     @NonNull
     private String name;
 
-    private String course;
+    private CourseEntity course;
 
     @Getter
     @Builder

@@ -1,5 +1,7 @@
 package com.hibernate.sample.domain.school.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,8 +19,15 @@ public class StudentEntity {
     @Column(name = "name")
     private String name;
 
+    // OnetoOne Relationship
+    // This will add a foreign key to Student Table
+    // The foreign key will be the course id because we fetch the course entity
+    // Simply put, whoever owns the foreign key column gets the @JoinColumn annotation.
+    // name = "course_id" -> If we don't provide a name, Hibernate will follow some rules to select a default one.
+    // @JsonBackReference maps the owning side of the relationship.
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id", referencedColumnName = "id")
+//    @JsonBackReference
     private CourseEntity courseEntity;
 
     @Builder
