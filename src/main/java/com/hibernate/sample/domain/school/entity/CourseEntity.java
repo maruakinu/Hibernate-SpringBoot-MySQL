@@ -20,8 +20,7 @@ public class CourseEntity {
     private String name;
 
     @Builder
-    public CourseEntity(Long id, String name) {
-        this.id = id;
+    public CourseEntity(String name) {
         this.name = name;
     }
 }

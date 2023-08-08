@@ -22,7 +22,7 @@ public class StudentServiceImpl implements StudentService {
     public StudentDto createStudent(StudentDto student) {
 
         CourseEntity course = CourseEntity.builder()
-                .name("Math")
+                .name("Bachelor of Science in Information Technology")
                 .build();
 
         StudentEntity studentEntity = StudentEntity.builder()
@@ -38,12 +38,12 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDto getStudent(Long id) {
         StudentEntity found = studentRepository.findByid(id);
-        CourseEntity coursefound = found.getCourseEntity();
-        return convertEntityToDto(found, coursefound);
+        String courseFound = found.getCourseEntity().getName();
+        return convertEntityToDto(found, courseFound);
     }
 
 
-    private StudentDto convertEntityToDto(StudentEntity entity, CourseEntity courseEntity) {
+    private StudentDto convertEntityToDto(StudentEntity entity, String courseEntity) {
         return StudentDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())
