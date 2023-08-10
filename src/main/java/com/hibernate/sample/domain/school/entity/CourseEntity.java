@@ -1,6 +1,7 @@
 package com.hibernate.sample.domain.school.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -8,11 +9,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @Table(name = "course")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class CourseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,6 +24,10 @@ public class CourseEntity {
 
     @Column(name = "name")
     private String name;
+
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
+//    @JsonManagedReference
+//    private List<SubjectEntity> subject;
 
     // BiDirectional
     // OnetoOne means one student has one course
