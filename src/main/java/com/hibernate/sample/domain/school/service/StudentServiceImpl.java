@@ -3,6 +3,7 @@ package com.hibernate.sample.domain.school.service;
 import com.hibernate.sample.domain.school.dto.StudentDto;
 import com.hibernate.sample.domain.school.entity.CourseEntity;
 import com.hibernate.sample.domain.school.entity.StudentEntity;
+import com.hibernate.sample.domain.school.entity.SubjectEntity;
 import com.hibernate.sample.domain.school.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,17 +39,21 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDto getStudent(Long id) {
         StudentEntity found = studentRepository.findByid(id);
-        CourseEntity courseFound = found.getCourseEntity();
+        List<CourseEntity> coursesFound = found.getCourseEntities();
+//        Used for OneToMany
+//        CourseEntity courseFound = found.getCourseEntity();
+        //------------------------
 //        String courseFound = found.getCourseEntity().getName();
-        return convertEntityToDto(found, courseFound);
+//        return convertEntityToDto(found, coursesFound);
+        return convertEntityToDto(found, coursesFound);
     }
 
 
-    private StudentDto convertEntityToDto(StudentEntity entity, CourseEntity courseEntity) {
+    private StudentDto convertEntityToDto(StudentEntity entity, List<CourseEntity> coursesEntity) {
         return StudentDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())
-                .course(courseEntity)
+                .courses(coursesEntity)
                 .build();
     }
 }

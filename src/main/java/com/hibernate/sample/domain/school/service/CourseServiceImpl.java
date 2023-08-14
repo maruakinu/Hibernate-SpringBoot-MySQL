@@ -33,15 +33,8 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<SubjectDto> getSubjectByCourseId(Long courseId) {
-
-       // return subjectRepository.findByCourseId(courseId);
         List<SubjectEntity> subjectEntities = subjectRepository.findByCourseId(courseId);
-
         return subjectEntities.stream().map(subjectEntity -> convertToDTO(subjectEntity)).collect(Collectors.toList());
-
-//        Long courseIds = courseRepository.findByid(courseId).getId();
-//        List<SubjectEntity> subjectEntities = subjectRepository.findByCourseId(courseIds);
-//        return subjectEntities.stream().map(subjectEntity -> convertToDTO(subjectEntity)).collect(Collectors.toList());
     }
 
     private SubjectDto convertToDTO(SubjectEntity subjectEntity) {

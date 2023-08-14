@@ -13,8 +13,5 @@ import java.util.List;
 @Repository
 public interface CourseRepository extends JpaRepository<CourseEntity, Long> {
 
-//    @Query("SELECT c FROM CourseEntity c LEFT JOIN Subject s ON s.course_id = c.id ")
-//    List<CourseEntity> findByCourseId(Long courseId);
-
     SubjectEntity findByid(@Param("id") Long id);
 }

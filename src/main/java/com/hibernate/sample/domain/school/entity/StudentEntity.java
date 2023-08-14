@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -29,6 +31,15 @@ public class StudentEntity {
     @JoinColumn(name = "course_id", referencedColumnName = "id")
 //    @JsonBackReference
     private CourseEntity courseEntity;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "subject_course",
+            joinColumns = { @JoinColumn(name = "student_id") },
+            inverseJoinColumns = { @JoinColumn(name = "course_id") })
+    private List<CourseEntity> courseEntities;
 
     @Builder
     public StudentEntity(Long id, String name, CourseEntity courseEntity) {

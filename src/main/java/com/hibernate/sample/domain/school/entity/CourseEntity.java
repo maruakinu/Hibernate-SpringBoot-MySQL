@@ -1,6 +1,7 @@
 package com.hibernate.sample.domain.school.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -10,6 +11,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+
+//@JsonIgnoreProperties -> This will ignore the properties inside the parameter of it.
 
 @Entity
 @Getter
@@ -40,6 +43,12 @@ public class CourseEntity {
 //    @JsonManagedReference
 //    private StudentEntity studentEntity;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    }, mappedBy = "courseEntities")
+    @JsonIgnore
+    private List<StudentEntity> students;
 
     @Builder
     public CourseEntity(String name) {
