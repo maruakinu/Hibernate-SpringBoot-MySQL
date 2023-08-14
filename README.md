@@ -12,46 +12,19 @@ API TESTING ( Open your API Testing Tool )
         POST METHOD
         localhost:8080/api/post
 
-         {
-            "student": {
-              "name": "sampleData"
-            }
-          }
-
 
 2. Get Student by ID with a registered Course
 
         GET METHOD
         localhost:8080/api/1
 
-       {
-        "student": {
-            "id": 1,
-            "name": "marlo",
-            "course": {
-                "id": 1,
-                "name": "Bachelor of Science in Information Technology"
-              }
-            }
-        }
 
 3. Get a Course with its corresponding Subjects
 
         GET METHOD
         localhost:8080/api/2/subjects
 
-       {
-        "subjects": [
-            {
-                "id": 3,
-                "name": "Algorithm",
-                "course": {
-                    "id": 2,
-                    "name": "Bachelor of Science in Computer Science\r\n"
-                  }
-              }
-            ]
-        }
+
 
 
 
