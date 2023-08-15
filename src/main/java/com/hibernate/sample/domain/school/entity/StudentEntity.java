@@ -36,7 +36,7 @@ public class StudentEntity {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
-    @JoinTable(name = "subject_course",
+    @JoinTable(name = "subject_student",
             joinColumns = { @JoinColumn(name = "student_id") },
             inverseJoinColumns = { @JoinColumn(name = "course_id") })
     private List<CourseEntity> courseEntities;
