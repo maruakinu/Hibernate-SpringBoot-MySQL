@@ -1,6 +1,7 @@
 package com.hibernate.sample.domain.school.controller;
 
 import com.hibernate.sample.domain.school.dto.CourseDto;
+import com.hibernate.sample.domain.school.dto.StudentDto;
 import com.hibernate.sample.domain.school.dto.SubjectDto;
 import com.hibernate.sample.domain.school.entity.SubjectEntity;
 import com.hibernate.sample.domain.school.repository.SubjectRepository;
@@ -27,9 +28,16 @@ public class CourseController {
 
 
     @GetMapping("/{courseId}/subjects")
-    public SubjectDto.MultipleSubjects getSubjectsByCourseId(@PathVariable Long courseId) {
+    public SubjectDto.MultipleSubjects get_All_Subjects_Associated_By_CourseId(@PathVariable Long courseId) {
         return SubjectDto.MultipleSubjects.builder()
-                .subjects(courseService.getSubjectByCourseId(courseId))
+                .subjects(courseService.getAllSubjectAssociatedByCourseId(courseId))
+                .build();
+    }
+
+    @GetMapping("/{courseId}/students")
+    public StudentDto.MultipleStudents get_All_Students_Associated_By_CourseId(@PathVariable Long courseId) {
+        return StudentDto.MultipleStudents.builder()
+                .students(courseService.getAllStudentsAssociatedByCourseId(courseId))
                 .build();
     }
 

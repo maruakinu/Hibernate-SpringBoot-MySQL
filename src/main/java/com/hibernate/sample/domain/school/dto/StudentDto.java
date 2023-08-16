@@ -27,4 +27,12 @@ public class StudentDto {
         private T student;
     }
 
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MultipleStudents {
+        private List<StudentDto> students;
+    }
+
 }

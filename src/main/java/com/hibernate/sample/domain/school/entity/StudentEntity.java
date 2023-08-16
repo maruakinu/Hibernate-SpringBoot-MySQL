@@ -1,7 +1,9 @@
 package com.hibernate.sample.domain.school.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +31,8 @@ public class StudentEntity {
     // @JsonBackReference maps the owning side of the relationship.
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id", referencedColumnName = "id")
+    @JsonIdentityReference(alwaysAsId=true)
+    @JsonProperty("course_id")
 //    @JsonBackReference
     private CourseEntity courseEntity;
 
@@ -36,10 +40,10 @@ public class StudentEntity {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
-    @JoinTable(name = "subject_student",
+    @JoinTable(name = "student_course",
             joinColumns = { @JoinColumn(name = "student_id") },
             inverseJoinColumns = { @JoinColumn(name = "course_id") })
-    private List<CourseEntity> courseEntities;
+    private List<CourseEntity> course;
 
     @Builder
     public StudentEntity(Long id, String name, CourseEntity courseEntity) {

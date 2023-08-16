@@ -20,7 +20,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public StudentDto.SingleStudent<StudentDto> getStudent(@PathVariable Long id) {
+    public StudentDto.SingleStudent<StudentDto> get_Student_And_Its_Associated_Courses(@PathVariable Long id) {
         return new StudentDto.SingleStudent<>(studentService.getStudent(id));
     }
 

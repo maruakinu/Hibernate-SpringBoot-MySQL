@@ -1,5 +1,7 @@
 package com.hibernate.sample.domain.school.dto;
 
+import com.hibernate.sample.domain.school.entity.CourseEntity;
+import com.hibernate.sample.domain.school.entity.StudentEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,14 +17,16 @@ import java.util.List;
 public class CourseDto {
 
     private Long id;
-    @NonNull
+//    @NonNull
     private String name;
+
+    private List<StudentEntity> students;
 
     @Getter
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class MultipleSubjects {
-        private List<CourseDto> subjects;
+    public static class MultipleCourses {
+        private List<CourseDto> courses;
     }
 }

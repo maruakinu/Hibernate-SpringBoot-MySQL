@@ -1,13 +1,17 @@
 package com.hibernate.sample.domain.school.repository;
 
 import com.hibernate.sample.domain.school.entity.StudentEntity;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-public interface StudentRepository extends CrudRepository<StudentEntity, Long> {
+import java.util.List;
 
- //   @Query("SELECT s FROM StudentEntity s LEFT JOIN CourseEntity c ON s.courseEntity.id  = c.id ")
+@Repository
+public interface StudentRepository extends JpaRepository<StudentEntity, Long> {
+
     StudentEntity findByid(@Param("id") Long id);
+
+    List<StudentEntity> findByCourseId(@Param("courseId") Long courseId);
 
 }

@@ -46,7 +46,7 @@ public class CourseEntity {
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
-    }, mappedBy = "courseEntities")
+    }, mappedBy = "course")
     @JsonIgnore
     private List<StudentEntity> students;
 

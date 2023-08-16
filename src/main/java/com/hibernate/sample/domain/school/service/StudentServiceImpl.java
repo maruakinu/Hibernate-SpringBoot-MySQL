@@ -39,7 +39,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDto getStudent(Long id) {
         StudentEntity found = studentRepository.findByid(id);
-        List<CourseEntity> coursesFound = found.getCourseEntities();
+        List<CourseEntity> coursesFound = found.getCourse();
 //        Used for OneToMany
 //        CourseEntity courseFound = found.getCourseEntity();
         //------------------------
