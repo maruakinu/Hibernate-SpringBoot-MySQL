@@ -13,16 +13,21 @@ API TESTING ( Open your API Testing Tool )
         localhost:8080/api/post
 
 
-2. Get Student by ID with a registered Course
+2. Get Current Student with its Courses
 
         GET METHOD
         localhost:8080/api/1
 
 
-3. Get a Course with its corresponding Subjects
+3. Get All Subjects with Course Id
 
         GET METHOD
         localhost:8080/api/2/subjects
+
+4. Get All Students with Course Id
+
+        GET METHOD
+        localhost:8080/api/2/students
 
 
 
